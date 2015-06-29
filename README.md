@@ -1,1 +1,2 @@
-# python-khipu
+# django-khipu
+
