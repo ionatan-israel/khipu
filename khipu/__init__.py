@@ -13,11 +13,6 @@ class Khipu(object):
     """
     Provee y centraliza la carga de los servicios que presta Khipu
     """
-    # Corresponde al ID del cobrador.
-    receiver_id = None
-    # Corresponde a la llave del cobrador.
-    secret = None
-    
     # diccionario que contiene los nombres de los servicios que existen
     # y si requieren autenticación
     services = {
@@ -35,12 +30,14 @@ class Khipu(object):
         'GetPaymentNotification': True
     }
     
-    def authenticate(self, receiver_id, secret):
+    def __init__(self, receiver_id, secret):
         """
         Identificar al cobrador que utilizara los servicios.
         No es necesario para utilizar el servicio VerifyPaymentNotification.
         """
+        # Corresponde al ID del cobrador.
         self.receiver_id = receiver_id
+        # Corresponde a la llave del cobrador.
         self.secret = secret
 
     def load_service(self, service_name):
@@ -52,7 +49,11 @@ class Khipu(object):
             # Es requerido identificarse para usar estos servicios
             if self.receiver_id and self.secret:
                 class_name = 'KhipuService' + service_name
-                return getattr(services, class_name)(self.receiver_id, self.secret, service_name)
+                service = getattr(
+                    services,
+                    class_name
+                )(self.receiver_id, self.secret, service_name)
+                return service.request()
             else:
                 raise KhipuError(
                     "Is necessary to authenticate to use the service {0}".format(
