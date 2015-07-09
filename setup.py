@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 from setuptools import setup, find_packages
 exec(open("src/version.py").read())
 
