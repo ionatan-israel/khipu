@@ -1,18 +1,30 @@
 #!/usr/bin/env python
 from setuptools import setup, find_packages
-version = __import__('src').__version__
+
+exec(open("facebook/version.py").read())
 
 setup(
     name='khipu',
+    version=__version__,
+    description='A client for the khipu API.',
     author='Jonatan Rodriguez',
     author_email='jrperdomoz@gmail.com',
-    description='A client for the khipu API.',
-    include_package_data=True,
-    install_requires=['requests>=2.7.0'],
-    keywords='khipu chile',
-    license="BSD",
-    packages=find_packages('src'),
-    package_dir={'': 'src'},
+    maintainer='Jonatan Rodriguez',
+    maintainer_email='jrperdomoz@gmail.com',
     url='https://github.com/jrperdomoz/khipu',
-    version=version
+    license="BSD",
+    packages=['khipu'],
+    # long_description=open("README.md").read(),
+    classifiers=[
+        'Development Status :: 3 - Alpha'
+        'Programming Language :: Python :: 2.7'
+        # 'License :: OSI Approved :: Apache Software License',
+        # 'Programming Language :: Python :: 2.6',
+        # 'Programming Language :: Python :: 2.7',
+        # 'Programming Language :: Python :: 3.3',
+    ],
+    install_requires=[
+        'requests',
+    ],
+    keywords='khipu chile',
 )
