@@ -1,5 +1,5 @@
 from setuptools import setup, find_packages
-from src.khipu.version import __version__ as version
+from src import __version__ as version
 
 
 setup(

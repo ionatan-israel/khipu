@@ -3,10 +3,6 @@ import hmac
 import requests
 
 
-from . import version
-__version__ = version.__version__
-
-
 class KhipuAPI(object):
     """
     A client for the Khipu API.
