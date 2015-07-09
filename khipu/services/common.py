@@ -1,8 +1,6 @@
 # -*- coding: utf-8 -*-
-
 import hashlib
 import hmac
-# import requests
 
 VERSION_KHIPU_SERVICE = '1.3'
 
