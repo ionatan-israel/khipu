@@ -55,9 +55,3 @@ class KhipuService(object):
     
     def get_url_service(self):
         return self.api_url + self.service_name
-    
-    #     return requests.post(self.api_url + path, data=self.data)
-    # self.data = {
-    #     'receiver_id': receiver_id,
-    #     'hash': self._hash
-    # }
