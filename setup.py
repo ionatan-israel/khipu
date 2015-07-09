@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 from setuptools import setup, find_packages
 
-exec(open("facebook/version.py").read())
+exec(open("khipu/version.py").read())
 
 setup(
     name='khipu',
