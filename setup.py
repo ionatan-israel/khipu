@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 from setuptools import setup, find_packages
-exec(open("src/version.py").read())
+version = __import__('src').__version__
 
 setup(
     name='khipu',
@@ -14,5 +14,5 @@ setup(
     packages=find_packages('src'),
     package_dir={'': 'src'},
     url='https://github.com/jrperdomoz/khipu',
-    version=__version__
+    version=version
 )
