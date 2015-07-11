@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 import hashlib
 import hmac
+import requests
 
 VERSION_KHIPU_SERVICE = '1.3'
 
@@ -12,11 +13,12 @@ class KhipuService(object):
     # Url del servicio
     api_url = 'https://khipu.com/api/%s/' % VERSION_KHIPU_SERVICE
     # diccionario de datos que se enviarán al servicio
-    data = dict()
+    data = None
     # mensaje en caso de error u otro evento
     message = None
+    requests = requests
     
-    def __init__(self, receiver_id, secret, service_name):
+    def __init__(self, receiver_id, secret, service_name, **kwargs):
         """
         Por defecto iniciamos el servicio identificando al cobrador.
         """
@@ -50,6 +52,19 @@ class KhipuService(object):
         """
         for name, value in values.iteritems():
             self.set_parameter(name, value)
+
+    def data_to_string(self):
+        cad = ''
+        for key, value in self.data.iteritems():
+            cad += '{0}={1}&'.format(key, value)
+        return cad[0:-1]
     
     def get_url_service(self):
         return self.api_url + self.service_name
+
+    def request(self):
+        data = {
+            'receiver_id': self.receiver_id,
+            'hash': self.do_hash(self.data_to_string())
+        }
+        return self.requests.post(self.get_url_service(), data).json()
