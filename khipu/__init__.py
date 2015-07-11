@@ -39,7 +39,7 @@ class Khipu(object):
         # Corresponde a la llave del cobrador.
         self.secret = secret
 
-    def load_service(self, service_name):
+    def service(self, service_name):
         """
         Carga el servicio y retorna el objecto, en caso de no existir
         el servicio, se invoca una excepcion
