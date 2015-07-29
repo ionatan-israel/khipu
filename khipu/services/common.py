@@ -28,13 +28,6 @@ class KhipuService(object):
         self.secret = secret
         # Nombre del servicio
         self.service_name = service_name
-            
-    def do_hash(self, string_data):
-        """
-        Genera el Hash que requiere khipu. _string corresponde a los datos
-        guardados en self.data despues de aplicar el método 'data_to_string'
-        """
-        return hmac.new(self.secret, string_data, hashlib.sha256).hexdigest()
 
     def set_parameter(self, name, value):
         """
@@ -53,7 +46,13 @@ class KhipuService(object):
         for name, value in values.iteritems():
             self.set_parameter(name, value)
 
-    def data_to_string(self):
+    def do_hash(self):
+        """
+        Genera el Hash que requiere khipu.
+        """
+        return hmac.new(self.secret, self.concatenated(), hashlib.sha256).hexdigest()
+        
+    def concatenated(self):
         cad = ''
         for key, value in self.data.iteritems():
             cad += '{0}={1}&'.format(key, value)
@@ -63,8 +62,5 @@ class KhipuService(object):
         return self.api_url + self.service_name
 
     def request(self):
-        data = {
-            'receiver_id': self.receiver_id,
-            'hash': self.do_hash(self.data_to_string())
-        }
-        return self.requests.post(self.get_url_service(), data).json()
+        self.data['hash'] = self.do_hash()
+        return self.requests.post(self.get_url_service(), self.data).json()
