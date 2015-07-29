@@ -39,7 +39,7 @@ class Khipu(object):
         # Corresponde a la llave del cobrador.
         self.secret = secret
 
-    def service(self, service_name):
+    def service(self, service_name, **kwargs):
         """
         Carga el servicio y retorna el objecto, en caso de no existir
         el servicio, se invoca una excepcion
@@ -51,7 +51,7 @@ class Khipu(object):
                 service = getattr(
                     services,
                     class_name
-                )(self.receiver_id, self.secret, service_name)
+                )(self.receiver_id, self.secret, service_name, **kwargs)
                 return service.request()
             else:
                 raise KhipuError(
