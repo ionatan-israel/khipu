@@ -8,7 +8,7 @@ La documentación de Khipu.com se puede ver desde aquí: [http://khipu.com/page/
 
 ## Instalación
 ```shell
-pip install git+https://github.com/jrperdomoz/khipu
+pip install -e git+https://github.com/jrperdomoz/khipu.git#egg=khipu
 ```
 
 ## Ejemplos
