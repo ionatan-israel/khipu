@@ -1,7 +1,5 @@
 # -*- coding: utf-8 -*-
-import imp
-import os
-import services
+from . import services
 
 
 # Definimos la ruta de Khipu
@@ -28,7 +26,7 @@ class Khipu(object):
         'ReceiverBanks': True,
         'GetPaymentNotification': True
     }
-    
+
     def __init__(self, receiver_id, secret):
         """
         Identificar al cobrador que utilizara los servicios.
@@ -64,6 +62,6 @@ class Khipu(object):
 
 
 class KhipuError(Exception):
-    
+
     def __init__(self, result):
         Exception.__init__(self, result)
