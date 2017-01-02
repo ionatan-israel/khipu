@@ -17,7 +17,7 @@ class KhipuService(object):
     # mensaje en caso de error u otro evento
     message = None
     requests = requests
-    
+
     def __init__(self, receiver_id, secret, service_name, **kwargs):
         """
         Por defecto iniciamos el servicio identificando al cobrador.
@@ -37,7 +37,7 @@ class KhipuService(object):
         """
         if 'name' in self.data:
             self.data[name] = value
-    
+
     def set_parameters(self, values):
         """
         Método para guardar, desde un diccionario, todos los elementos que debe
@@ -51,13 +51,13 @@ class KhipuService(object):
         Genera el Hash que requiere khipu.
         """
         return hmac.new(self.secret, self.concatenated(), hashlib.sha256).hexdigest()
-        
+
     def concatenated(self):
         cad = ''
         for key, value in self.data.iteritems():
             cad += '{0}={1}&'.format(key, value)
         return cad[0:-1]
-    
+
     def get_url_service(self):
         return self.api_url + self.service_name
 

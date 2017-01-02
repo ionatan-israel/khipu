@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
-from common import KhipuService
+from .common import KhipuService
 
 
 class KhipuServiceReceiverBanks(KhipuService):
-    
+
     def __init__(self, receiver_id, secret, service_name, **kwargs):
         super(
             KhipuServiceReceiverBanks, self).__init__(

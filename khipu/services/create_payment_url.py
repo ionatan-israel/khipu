@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from collections import OrderedDict
-from common import KhipuService
+from .common import KhipuService
 
 
 class KhipuServiceCreatePaymentURL(KhipuService):
@@ -8,7 +8,7 @@ class KhipuServiceCreatePaymentURL(KhipuService):
     Con esta opción puedes crear un pago desde tu servidor y obtener la URL
     para enviar a pagar a tus pagadores
     (tanto en escritorios como aplicaciones móviles).
-    
+
     Parámetors que debe recibir la clase
     ====================================
     subject -> el asunto del cobro. Con un máximo de 255 caracteres.
@@ -43,7 +43,7 @@ class KhipuServiceCreatePaymentURL(KhipuService):
         en esta variable puedes enviar información personalizada de la
         transacción, como por ejemplo, instrucciones de preparación
         o dirección de envio.
-    
+
     Para el cálculo del parámetro hash debes referirte a la documentación
     de cálculo del hash. El orden de los parámetros es:
     >> receiver_id, subject, body, amount, payer_email, bank_id, expires_date,
